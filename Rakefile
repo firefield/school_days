@@ -19,7 +19,7 @@ $hoe = Hoe.spec 'school_days' do
 
 end
 
-require 'newgem/tasks'
+#require 'newgem/tasks'
 require 'shoulda/tasks'
 
 Dir['tasks/**/*.rake'].each { |t| load t }
