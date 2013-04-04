@@ -1,29 +1,25 @@
 require 'rubygems'
-gem 'hoe', '>= 2.1.0'
-require 'hoe'
+require 'rake'
+require 'bundler/gem_tasks'
+require 'rake/testtask'
+
 require 'fileutils'
 require './lib/school_days'
 
-Hoe.plugin :newgem
-# Hoe.plugin :website
-# Hoe.plugin :cucumberfeatures
-
-# Generate all the Rake tasks
-# Run 'rake -T' to see list of generated tasks (from gem root directory)
-$hoe = Hoe.spec 'school_days' do
-  self.developer 'Ryan Wilcox', 'rwilcox@wilcoxd.com'
-  self.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
-  self.rubyforge_name       = self.name # TODO this is default value
-  self.extra_deps         = [ ['activesupport','>= 2.0.2'] ]
-  self.extra_dev_deps     = [ ["shoulda", ">= 2.10.0"] ]
-
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
 end
 
-#require 'newgem/tasks'
-require 'shoulda/tasks'
+task :default => :test
 
-Dir['tasks/**/*.rake'].each { |t| load t }
+require 'rdoc/task'
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
-# TODO - want other tests/tasks run by default? Add them to the list
-# remove_task :default
-# task :default => [:spec, :features]
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "school_days #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
