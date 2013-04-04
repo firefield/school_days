@@ -16,7 +16,7 @@ With School Days you can:
   * 1.days.from_now.school_day?
   * Date.civil(2011, 05, 31).school_night?
   * 2.school_days.from_now
-  
+
 In the school days configuration you can
   * Set the start and end date of a school session (as in: when does school break for summer, then resume)
   * Be able to set exceptional "in" days ("Normally, there is no school on Saturday, but we need to in this case")
@@ -79,18 +79,18 @@ By default, school_days assumes that every week day during a session is a school
 This key has two subkeys:
 
   * holidays
-  
+
   This is a flat list of dates where there is no class
-  
+
   * included_days
-  
+
   I've seen schools have school days on a Saturday, in very rare circumstances. included_days list days where you would normally not have school (weekends)... but you do this year.
 
 Note that exceptional days should fall in the school year as a whole (see the above note about FixNum#school_days.from)
 
 Example configure file can be found at: https://github.com/rwilcox/school_days/blob/master/rails_generators/school_days_config/templates/school_days.yml
 
-== WHAT THIS GEM DOES NOT DO: 
+== WHAT THIS GEM DOES NOT DO:
 
 This gem is meant for ONE school calendar. This gem does not address the situation where you are (for example) writing a state level website and have multiple school districts each with their own calendar.
 
@@ -117,74 +117,49 @@ This gem also relies on manual configuration every year. It can not possibly kno
 The following are generated specifications for this gem. Computers know very little about making sense, *however* these should give you some idea of the capability of this gem
 
     Config
-      Config should load a file with one session with no errors. 
-      Config should load a file with two sessions correctly. 
-      exceptional included days should only include exceptional included days, as Ruby date objects. 
-      holiday exceptions should only include listed holiday exceptions, as Ruby Date objects. 
-      when loading a file with multiple sessions should be able to find the first start date. 
-      when loading a file with multiple sessions should be able to find the last end date. 
-      when loading a file with one session should be able to find the end date. 
-      when loading a file with one session should be able to find the start date. 
-      when loading an invalid config file should throw a Runtime error when we're missing start or end dates for a session. 
+      Config should load a file with one session with no errors.
+      Config should load a file with two sessions correctly.
+      exceptional included days should only include exceptional included days, as Ruby date objects.
+      holiday exceptions should only include listed holiday exceptions, as Ruby Date objects.
+      when loading a file with multiple sessions should be able to find the first start date.
+      when loading a file with multiple sessions should be able to find the last end date.
+      when loading a file with one session should be able to find the end date.
+      when loading a file with one session should be able to find the start date.
+      when loading an invalid config file should throw a Runtime error when we're missing start or end dates for a session.
     DateExtension
-      Date instances should Date should respond to school_day?. 
-      Date instances should return false for school_day? if the day is a weekend. 
-      Date instances should return false for school_day? if the day is flagged as a holiday. 
-      Date instances should return false if the day is not a school night. 
-      Date instances should return true before an exceptional included day. 
-      Date instances should return true for school_day if the day is a weekday. 
-      Date instances should return true for school_day? if a normally off day is flagged as an included day. 
-      Date instances should return true if the day is a school night. 
-      Date instances should return true when the date is equal to the last date of a session. 
-      Date instances should return true when the date is equal to the start date of a session. 
-      Date instances when looking at a single school session should return false for school_day? if the date is outside the session (and not in exceptional included days). 
-      Date instances when looking at a single school session should return true for school_day? if the date is inside the session (and not in exceptional included days). 
-      Date instances when looking at multiple school sessions should return false for school_day if the weekday is between school sessions. 
-      Date instances when looking at multiple school sessions should return false for school_day? if a weekday is is outside ALL of the sessions (and not in exceptional included days). 
-      Date instances when looking at multiple school sessions should return false for school_day? if a weekend is is outside ALL of the sessions (and not in exceptional included days). 
-      Date instances when looking at multiple school sessions should return true for school_day? if the date is outside one session, but inside another. 
+      Date instances should Date should respond to school_day?.
+      Date instances should return false for school_day? if the day is a weekend.
+      Date instances should return false for school_day? if the day is flagged as a holiday.
+      Date instances should return false if the day is not a school night.
+      Date instances should return true before an exceptional included day.
+      Date instances should return true for school_day if the day is a weekday.
+      Date instances should return true for school_day? if a normally off day is flagged as an included day.
+      Date instances should return true if the day is a school night.
+      Date instances should return true when the date is equal to the last date of a session.
+      Date instances should return true when the date is equal to the start date of a session.
+      Date instances when looking at a single school session should return false for school_day? if the date is outside the session (and not in exceptional included days).
+      Date instances when looking at a single school session should return true for school_day? if the date is inside the session (and not in exceptional included days).
+      Date instances when looking at multiple school sessions should return false for school_day if the weekday is between school sessions.
+      Date instances when looking at multiple school sessions should return false for school_day? if a weekday is is outside ALL of the sessions (and not in exceptional included days).
+      Date instances when looking at multiple school sessions should return false for school_day? if a weekend is is outside ALL of the sessions (and not in exceptional included days).
+      Date instances when looking at multiple school sessions should return true for school_day? if the date is outside one session, but inside another.
     FixnumExtension
-      when adding a school day should elegantly handle a situation where we go outside the school year. 
-      when adding a school day should move forward one week when adding 5 school days. 
-      when adding a school day should move forward onto an exceptional day. 
-      when adding a school day should move to Monday (if tomorrow is a weekend). 
-      when adding a school day should move to the next session if we have multiple sessions. 
-      when adding a school day should move to tomorrow (if tomorrow is a school day). 
-      when adding a school day should skip exceptional holidays. 
-      when subtracting a school day should elegantly handle a situation where we go outside the school year. 
-      when subtracting a school day should move back one week when adding 5 school days. 
-      when subtracting a school day should move backwards onto an exceptional day. 
-      when subtracting a school day should move to Friday (if yesterday is a weekend). 
-      when subtracting a school day should move to the previous session if we have multiple sessions. 
-      when subtracting a school day should move to yesterday (if yesterday is a school day). 
-      when subtracting a school day should skip exceptional holidays. 
+      when adding a school day should elegantly handle a situation where we go outside the school year.
+      when adding a school day should move forward one week when adding 5 school days.
+      when adding a school day should move forward onto an exceptional day.
+      when adding a school day should move to Monday (if tomorrow is a weekend).
+      when adding a school day should move to the next session if we have multiple sessions.
+      when adding a school day should move to tomorrow (if tomorrow is a school day).
+      when adding a school day should skip exceptional holidays.
+      when subtracting a school day should elegantly handle a situation where we go outside the school year.
+      when subtracting a school day should move back one week when adding 5 school days.
+      when subtracting a school day should move backwards onto an exceptional day.
+      when subtracting a school day should move to Friday (if yesterday is a weekend).
+      when subtracting a school day should move to the previous session if we have multiple sessions.
+      when subtracting a school day should move to yesterday (if yesterday is a school day).
+      when subtracting a school day should skip exceptional holidays.
     SchoolDaysCalculator
-      identifying if a date is in the range of the whole school year with a single session should return false when it falls OUTSIDE of the school year. 
-      identifying if a date is in the range of the whole school year with a single session should return true when it falls in the school year. 
-      identifying if a date is in the range of the whole school year with many sessions should return false when it falls OUTSIDE of the school year. 
-      identifying if a date is in the range of the whole school year with many sessions should return true when it falls in the school year. 
-
-== LICENSE:
-
-(The MIT License)
-
-Copyright (c) 2011 Ryan Wilcox
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+      identifying if a date is in the range of the whole school year with a single session should return false when it falls OUTSIDE of the school year.
+      identifying if a date is in the range of the whole school year with a single session should return true when it falls in the school year.
+      identifying if a date is in the range of the whole school year with many sessions should return false when it falls OUTSIDE of the school year.
+      identifying if a date is in the range of the whole school year with many sessions should return true when it falls in the school year.
