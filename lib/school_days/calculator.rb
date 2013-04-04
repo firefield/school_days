@@ -1,7 +1,7 @@
 
 module SchoolDays
   class Calculator
-    def initialize(days, calendar_name)
+    def initialize(days, calendar_name='default')
       @days = days
       @calendar = SchoolDays.config.calendars[calendar_name]
     end
@@ -38,7 +38,7 @@ module SchoolDays
           # once we go outside we'll never find another school day. WD-rpw 01-26-2011)
         end until date.school_day?(@calendar)
       end
-      date      
+      date
     end
     alias_method :until, :before
 

@@ -1,15 +1,16 @@
 school_days:
-  school_sessions:
-    fall_semester:
-        start_date: Aug 29, 2011
-        end_date: December 15, 2011
-    spring_semester:
-        start_date: January 15, 2012
-        end_date: May 15, 2012
-  exceptions:
-    holidays:
-      - Jan 23, 2012
-      - May 1, 2012
-    included_days:
-      - Aug 27, 2011
-      - May 12, 2012
+  default:
+    school_sessions:
+      fall_semester:
+          start_date: Aug 29, 2011
+          end_date: December 15, 2011
+      spring_semester:
+          start_date: January 15, 2012
+          end_date: May 15, 2012
+    exceptions:
+      holidays:
+        - Jan 23, 2012
+        - May 1, 2012
+      included_days:
+        - Aug 27, 2011
+        - May 12, 2012
