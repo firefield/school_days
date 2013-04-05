@@ -1,4 +1,3 @@
-
 module SchoolDays
   class Calendar
     attr_reader :school_sessions
@@ -61,7 +60,7 @@ private
           raise "start_date or end_date is blank for #{session_name} in #{filename}"
         end
 
-        { 
+        {
           :start_date => Date.parse(session_value["start_date"]),
           :end_date   => Date.parse(session_value["end_date"])
         }
