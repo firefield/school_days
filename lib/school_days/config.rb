@@ -20,8 +20,12 @@ module SchoolDays
     def load(filename)
       data = YAML::load(File.open(filename))
       data['school_days'].keys.each do |calendar_name|
-        @calendars[calendar_name] = Calendar.new(data['school_days'][calendar_name], calendar_name)
+        load_calendar(data['school_days'][calendar_name], calendar_name)
       end
+    end
+
+    def load_calendar(calendar_data, calendar_name)
+      @calendars[calendar_name] = Calendar.new(calendar_data, calendar_name)
     end
   end
 
